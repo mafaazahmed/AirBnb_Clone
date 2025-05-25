@@ -13,16 +13,16 @@ router.route("/") //index route,create Route
   .post(isLoggedIn,  upload.single("Listing[image]"), validateListing,  wrapAsync(listingController.createListing));
 
 //new route
-router.get("/new", isLoggedIn, listingController.renderNewForm);
+router.get("/listings/new", isLoggedIn, listingController.renderNewForm);
 
-router.route("/:id") //show route,update route,delete route
+router.route("/listings/:id") //show route,update route,delete route
 
   .get(wrapAsync (listingController.showListing))
   .put(isLoggedIn, isOwner, upload.single("Listing[image]"), validateListing, wrapAsync(listingController.updateListing))
   .delete(isLoggedIn, isOwner, wrapAsync(listingController.destroyListing));
 
 //edit route
-router.get("/:id/edit",  isLoggedIn, isOwner, wrapAsync(listingController.renderEditform));
+router.get("/listings/:id/edit",  isLoggedIn, isOwner, wrapAsync(listingController.renderEditform));
 
 
 

@@ -8,7 +8,6 @@ const mongoose = require("mongoose");
 const path = require("path");
 const methodoverride = require("method-override");
 const ejsMate = require("ejs-mate");
-const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
@@ -17,6 +16,7 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
 const dbUrl = 'mongodb+srv://MafaazAhmed:WlgNiBip5rZIU59i@cluster0.wqvijbe.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+//const dbUrl = 'mongodb://127.0.0.1:27017/wanderlust';
 
 const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
@@ -64,11 +64,6 @@ main().then(() => {
     console.log(err);
 })
 
-// app.get("/", (req,res) => {
-//     res.send("Hi I am woderlust");
-// });
-
-
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -88,14 +83,18 @@ app.use((req, res, next) => {
 })
 
 
-app.use("/listings", listingsRouter);
+app.use("/", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
 
 
 // page not found error
-app.all("*" , (req, res, next) => {
-    next();
+app.all("*" , (req, res) => {
+    err = {
+        statusCode : 404, 
+        message : "page not found"
+    }
+     res.render("listings/error.ejs", { err } );
 });
 
 // Error handler
