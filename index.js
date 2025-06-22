@@ -15,8 +15,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
-//const dbUrl = 'mongodb+srv://MafaazAhmed:WlgNiBip5rZIU59i@cluster0.wqvijbe.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-const dbUrl = 'mongodb://127.0.0.1:27017/wanderlust';
+const dbUrl = 'mongodb+srv://MafaazAhmed:WlgNiBip5rZIU59i@cluster0.wqvijbe.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+//const dbUrl = 'mongodb://127.0.0.1:27017/wanderlust';
 
 const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
