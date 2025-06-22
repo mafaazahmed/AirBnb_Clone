@@ -1,17 +1,17 @@
 <% layout("/layouts/boilerplate") %>
 <script>
     const mapToken = "<%= process.env.MAP_TOKEN %>";
-    console.log(mapToken);
-    const listing = <%- JSON.stringify(listing) %>;
-    console.log(listing); 
+    //console.log(mapToken);
+    const listing = <%- JSON.stringify(listing) %>
+    //console.log(listing); 
 </script>
 <body>
     <div class="row mt-3">
-        <div class="col-8 offset-3">
+        <div class="col-8 offset-2">
     <h3><%=listing.title%></h3>
 </div>
 </div>
-    <div class="card col-6 offset-3 show-card listing-card">
+    <div class="card col-8 offset-2 show-card listing-card">
         <img src="<%=listing.image.url%>" class="card-img-top show-img" alt="Listing_image">
     <div class="card-body">
         <p class="card-text"><b>Owned By : <i><%=listing.owner.username%></i></b></p>
@@ -22,16 +22,16 @@
     </div>
     </div>
     <% if(currUser &&  currUser._id.equals(listing.owner._id)) { %>
-    <div class="btns">
-    <a href="/listings/<%= listing.id %>/edit" class="btn edit-btn col-1 offset-3">Edit</a>
+    <div class="btns col-8 offset-2 mb-3">
+    <a href="/listings/<%= listing.id %>/edit" class="btn edit-btn">Edit</a>
      <form method="post" action="/listings/<%=listing._id%>?_method=DELETE">
-            <button class="btn btn-dark offset-5">Delete</button>
+            <button class="btn btn-dark mx-3">Delete</button>
         </form>
     </div>  
     <% } %> 
 
 
-    <div class="col-8 offset-3">
+    <div class="col-8 offset-2">
         <% if(currUser) {%>
         <h4>Leave a review</h4>
         <form action="/listings/<%=listing._id%>/reviews" method="post" novalidate class="needs-validation">
@@ -63,7 +63,7 @@
         <div class="row">
          <p><b>All reviews</b></p>
         <% for(review of listing.reviews) { %>
-            <div class="card col-5 ms-3 mb-3">
+            <div class="card col-8 mb-3">
                 <div class="card-body">
                     <h5 class="card-title"> @<%= review.author.username %></h5>
                     <p class="starability-result card-text" data-rating="<%=review.rating%>"> </p>
@@ -80,11 +80,13 @@
    <% } %>
 </div>
 
-
-<div class="col-8 offset-3 mb-3">
+<div class="row">
+    <div class="col-8 offset-2">
     <h3>Where you'll be</h3>
     <div id="map"></div>
 </div> 
+</div>
+
 
 
 
