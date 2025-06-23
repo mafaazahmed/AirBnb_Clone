@@ -11,7 +11,7 @@
     <h3><%=listing.title%></h3>
 </div>
 </div>
-    <div class="card col-11  show-card listing-card">
+    <div class="card col-11 show-card listing-card">
         <img src="<%=listing.image.url%>" class="card-img-top show-img" alt="Listing_image">
     <div class="card-body">
         <p class="card-text"><b>Owned By : <i><%=listing.owner.username%></i></b></p>
@@ -39,9 +39,9 @@
             <div class="mb-3 mt-3">
             <label for="rating" class="form-label">Rating</label>
             <fieldset class="starability-slot">  
-                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]"" checked aria-label="No rating." />
-                <input type="radio" id="first-rate1" name="review[rating]"" />
-                <label for="first-rate1" title="Te star</label>
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
                 <input type="radio" id="first-rate2" name="review[rating]" value="2" />
                 <label for="first-rate2" title="Not good">2 stars</label>
                 <input type="radio" id="first-rate3" name="review[rating]" value="3" />
@@ -82,8 +82,8 @@
 
 <div class="row">
     <div class="col-11">
-         <h3>Where you'll be</h3>
-         <div id="map"></div>
+    <h3 class="col-10 offset-2">Where you'll be</h3>
+    <div id="map"></div>
 </div> 
 </div>
 
