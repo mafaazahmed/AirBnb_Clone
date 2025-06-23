@@ -36,7 +36,7 @@ module.exports.loginUser = async (req, res) => {
     if(res.locals.redirectUrl){
      res.redirect(res.locals.redirectUrl);
     }else{
-     res.redirect("/listings");
+     res.redirect("/");
     } 
  };
  
