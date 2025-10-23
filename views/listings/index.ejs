@@ -58,8 +58,8 @@
     </style>
      <div class="search">
       <form class="d-flex" role="search">
-        <input  class="form-control me-2 search-input" id="home" type="search" placeholder="Search destinations" aria-label="Search">
-        <button class="btn btn-search" type="submit" id="search"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+        <input  class="form-control me-2 search-input" id="home" type="search" name="q" placeholder="Search destinations" aria-label="Search">
+        
       </form>
     </div>
      <!-- <div id="filters" >
@@ -150,33 +150,21 @@
       
   //   }
   //  })
-   // search operation
-   let input = document.getElementById("home");
-   let btn = document.getElementById("search");
-   let cards = document.getElementsByClassName("d-block");
+   let searchInput = document.getElementById("home");
+   let cards = document.querySelectorAll(".listings .d-block");
 
+   searchInput.addEventListener("input", () => {
+     let searchTerm = searchInput.value.toLowerCase();
 
-
-   for(let card of cards){
-    btn.addEventListener("click", (event) => {
-      event.preventDefault();
-      if(input.value && input.value != card.id){
-        card.className = "d-none";
-      }
-      input.addEventListener("click", () => {
-        card.className = "d-block";
-      })
-    })
-   };
-
-  
-
-   
-
-    
-   
-   
-   
-
-
+     for (let card of cards) {
+       let title = card.querySelector(".card-text b").innerText.toLowerCase();
+       let location = card.querySelector(".card-text b").nextElementSibling ? card.querySelector(".card-text b").nextElementSibling.innerText.toLowerCase() : '';
+       
+       if (title.includes(searchTerm) || location.includes(searchTerm)) {
+         card.classList.remove("d-none");
+       } else {
+         card.classList.add("d-none");
+       }
+     }
+   });
 </script>
